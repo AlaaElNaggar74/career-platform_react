@@ -19,7 +19,7 @@ const ProtoRegisterSeek = () => {
                 Employer?
                 <NavLink
                   to="/register-emp"
-                  className="text-white text-decoration-none  ms-2 "
+                  className="text-white fw-normal text-decoration-none  ms-2 "
                 >
                   Sign Up As Employer
                 </NavLink>
