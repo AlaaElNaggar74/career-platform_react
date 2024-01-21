@@ -1,0 +1,13 @@
+.protoLanging{
+    min-height: 100vh;
+    /* background-color: cadetblue; */
+}
+.protoLanging .ms-n5 {
+    margin-left: -40px;
+}
+.protoLanging .ms-n2 {
+    margin-left: -40px;
+}
+.protoLanging input::placeholder {
+    color: rgb(194, 194, 194);
+}

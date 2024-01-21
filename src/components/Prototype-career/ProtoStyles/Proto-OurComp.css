@@ -1,0 +1,21 @@
+/* .ourCompaines{
+    
+} */
+
+
+.ourCompaines .colHeight{
+    width: 150px;
+    height: 150px;
+    /* text-align: center; */
+    
+    margin: auto;
+}
+
+.ourCompaines img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    
+overflow: hidden;
+
+}

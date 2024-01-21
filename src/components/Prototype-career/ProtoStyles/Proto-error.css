@@ -1,0 +1,120 @@
+.errPar {
+  font: normal 100%/1.15 "Merriweather", serif;
+  background-color: #720000;
+  color: #fff;
+}
+
+.errPar .wrapper {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* https://www.flaticon.com/authors/vectors-market */
+/* https://www.flaticon.com/authors/icomoon */
+.errPar .box {
+  max-width: 70%;
+  min-height: auto;
+  margin: 0 auto;
+  padding: 1em 1em;
+  text-align: center;
+  background: url("https://www.dropbox.com/s/xq0841cp3icnuqd/flame.png?raw=1")
+      no-repeat top 8em center/128px 128px,
+    transparent
+      url("https://www.dropbox.com/s/w7qqrcvhlx3pwnf/desktop-pc.png?raw=1")
+      no-repeat top 10em center/128px 128px;
+}
+
+.errPar h1,
+.errPar p:not(:last-of-type) {
+  text-shadow: 0 0 6px #216f79;
+}
+
+.errPar h1 {
+  margin: 0 0 1rem 0;
+  font-size: 6em;
+}
+
+.errPar p.errorTex {
+  padding-top: 4rem;
+  margin-bottom: 0.5em;
+  font-size: 2em;
+}
+
+.errPar p:first-of-type {
+  margin-top: 4em;
+}
+
+.errPar p > button {
+  border-bottom: 1px dashed #216f79;
+  font-style: italic;
+  text-decoration: none;
+  color: #f5f5f5;
+}
+
+.errPar p > button:hover {
+  text-shadow: 0 0 6px #f7f7f7;
+}
+
+.errPar p img {
+  vertical-align: bottom;
+}
+
+/* .errPar{
+    font: normal 100%/1.15 "Merriweather", serif;
+    background-color: #720000;
+    color: #fff;
+  }
+  
+  .errPar .wrapper {
+    position: relative;
+    max-width: 1298px;
+    min-height: 100vh;
+   
+  }
+  
+  .errPar .box {
+    max-width: 70%;
+    min-height: auto;
+    margin: 0 auto;
+    padding: 1em 1em;
+    text-align: center;
+    background: url("https://www.dropbox.com/s/xq0841cp3icnuqd/flame.png?raw=1")
+        no-repeat top 10em center/128px 128px,
+      transparent
+        url("https://www.dropbox.com/s/w7qqrcvhlx3pwnf/desktop-pc.png?raw=1")
+        no-repeat top 13em center/128px 128px;
+  }
+  
+  .errPar h1,
+  .errPar p:not(:last-of-type) {
+    text-shadow: 0 0 6px #216f79;
+  }
+  
+  .errPar h1 {
+    margin: 0 0 1rem 0;
+    font-size: 8em;
+  }
+  
+  .errPar p {
+    margin-bottom: 0.5em;
+    font-size: 3em;
+  }
+  
+  .errPar p:first-of-type {
+    margin-top: 4em;
+  }
+  
+  .errPar p > button {
+    border-bottom: 1px dashed #216f79;
+    font-style: italic;
+    text-decoration: none;
+    color: #f5f5f5;
+  }
+  
+  .errPar p > button:hover {
+    text-shadow: 0 0 6px #f7f7f7;
+  }
+  
+  .errPar p img {
+    vertical-align: bottom;
+  } */

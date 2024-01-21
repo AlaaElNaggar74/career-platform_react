@@ -1,0 +1,24 @@
+.proto.navbar .navbar-nav .nav-item .nav-link {
+  color: green;
+  font-weight: 500;
+}
+.proto.navbar  {
+ padding: 2rem 0;
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ width: 100%;
+ z-index: 1000;
+ 
+}
+
+.proto.navbar .LogoJob {
+  font-family: "Courier New", Courier, monospace;
+  font-style: italic;
+  letter-spacing: -3px;
+  font-size: 2rem;
+  color: green;
+  font-weight: 500;
+}
+

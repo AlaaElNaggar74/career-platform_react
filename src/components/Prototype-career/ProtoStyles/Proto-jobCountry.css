@@ -1,0 +1,41 @@
+.jobsCountry {
+  margin-top: 75px;
+}
+
+.jobsCountry .colHeight {
+  width: 100px;
+  height: 100px;
+}
+
+.jobsCountry .CustCountry {
+  position: relative;
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border-radius: 30px;
+  width: 75%;
+  margin: auto;
+}
+
+.jobsCountry .CustCountry .layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(230, 230, 230, 0.63);
+  width: 100;
+  z-index: 10;
+}
+
+.jobsCountry .CustCountry .box {
+  position: relative;
+  z-index: 100;
+}
+/* 
+@media (max-width: 500px) {
+  .jobsCountry .CustCountry {
+    width: 100%;
+  }
+} */
