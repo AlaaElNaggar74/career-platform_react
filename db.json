@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "4bb2",
+      "fname": "Alaa",
+      "lname": "Mohammed",
+      "email": "elnaggar589@gmail.com",
+      "password": "elnaggar589",
+      "companyName": "El Naggar",
+      "companyLocation": "Cairo",
+      "companySize": "Large",
+      "hiringRole": "teacher",
+      "checkIinput": true,
+      "jobTitle": null,
+      "role": "employer"
+    },
+    {
+      "id": "5f81",
+      "fname": "momoAdmin",
+      "lname": "Mohammed",
+      "email": "momoAdmin@gmail.com",
+      "password": "momoAdmin",
+      "companyName": null,
+      "companyLocation": null,
+      "companySize": null,
+      "jobTitle": "player",
+      "checkIinput": false,
+      "role": "seeker"
+    }
+  ]
+}

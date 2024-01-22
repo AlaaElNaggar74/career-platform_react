@@ -1,8 +1,82 @@
-import React, { useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../ProtoStyles/Proto-Auth/Auth-Rigister-Seek.css";
 
 const ProtoRegisterSeek = () => {
+  let navigate = useNavigate();
+
+  let [fname, setFname] = useState("");
+  let [lname, setLname] = useState("");
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
+  let [jobTitle, setJobTitle] = useState("");
+  let [checkIinput, setCheckIinput] = useState(false);
+
+  let [emailErro, setEmailErro] = useState(false);
+
+  let formSubmitHandler = async () => {
+    let formData = {
+      fname,
+      lname,
+      email,
+      password,
+      companyName: null,
+      companyLocation: null,
+      companySize: null,
+      jobTitle,
+      checkIinput,
+      role: "seeker",
+    };
+    await fetch(`http://localhost:5000/users?email=${email}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length === 0) {
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((data) => navigate("/login", { replace: true }))
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        } else {
+          console.log(data);
+          setEmailErro(true);
+          setTimeout(() => {
+            document.getElementById("emailerrorId").style.display = "none";
+            setEmailErro(false);
+          }, 1000);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  function inputChangeHandler(event) {
+    if (event.id === "fname") {
+      setFname(event.value);
+    } else if (event.id === "lname") {
+      setLname(event.value);
+    } else if (event.id === "email") {
+      setEmail(event.value);
+    } else if (event.id === "password") {
+      setPassword(event.value);
+    } else if (event.id === "jobTitle") {
+      setJobTitle(event.value);
+    } else if (event.id === "checkIinput") {
+      setCheckIinput(event.checked);
+    }
+  }
+
   useEffect(() => {
     document.title = "Seeker-Register";
   }, []);
@@ -31,14 +105,20 @@ const ProtoRegisterSeek = () => {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
+                  formSubmitHandler();
                 }}
               >
                 <div className="mb-3">
                   <div className="row">
                     <div className="col-sm-6 mb-3 mb-sm-0">
                       <input
+                        required
                         type="text"
-                        id="Fname"
+                        id="fname"
+                        value={fname}
+                        onChange={(event) => {
+                          setFname(event.target.value);
+                        }}
                         className="form-control rounded-5 ps-4"
                         placeholder="First name"
                         aria-label="First name"
@@ -46,8 +126,13 @@ const ProtoRegisterSeek = () => {
                     </div>
                     <div className="col-sm-6">
                       <input
+                        required
                         type="text"
-                        id="Lname"
+                        id="lname"
+                        value={lname}
+                        onChange={(event) => {
+                          setLname(event.target.value);
+                        }}
                         className="form-control rounded-5 ps-4"
                         placeholder="Last name"
                         aria-label="Last name"
@@ -58,28 +143,43 @@ const ProtoRegisterSeek = () => {
 
                 <div className="mb-3">
                   <input
+                    required
                     type="email"
                     className="form-control ps-4 py-2 rounded-5"
                     id="email"
+                    value={email}
+                    onChange={(event) => inputChangeHandler(event.target)}
                     placeholder="Work Email"
                     aria-describedby="emailHelp"
                   />
+                  {emailErro && (
+                    <p className="text-danger ms-4" id="emailerrorId">
+                      Email should be unique
+                    </p>
+                  )}
                 </div>
                 <div className="mb-3">
                   <input
+                    required
                     type="password"
+                    value={password}
+                    onChange={(event) => inputChangeHandler(event.target)}
                     className="form-control ps-4 py-2 rounded-5 "
                     placeholder="Password"
                     id="password"
                   />
                 </div>
+
                 <div className="mb-3">
                   <input
+                    required
                     type="text"
                     className="form-control ps-4 py-2 rounded-5"
-                    id="hireRole"
+                    value={jobTitle}
+                    id="jobTitle"
                     placeholder="What Job TitLes Are You Looking For?"
-                    aria-describedby="hireRolelHelp"
+                    onChange={(event) => inputChangeHandler(event.target)}
+                    aria-describedby="jobTitlelHelp"
                   />
                 </div>
 
@@ -87,10 +187,10 @@ const ProtoRegisterSeek = () => {
                   <input
                     className="form-check-input"
                     type="checkbox"
-                    value=""
-                    id="flexCheckChecked"
+                    onChange={(event) => inputChangeHandler(event.target)}
+                    id="checkIinput"
                   />
-                  <label className="form-check-label" for="flexCheckChecked">
+                  <label className="form-check-label" htmlFor="checkIinput">
                     ihave read and agree with
                     <span className="text-success">Terms of Service </span> and
                     our <span className="text-success">Privacy Policy </span>
@@ -113,7 +213,7 @@ const ProtoRegisterSeek = () => {
                 </NavLink>
               </p>
               <p className="form-check d-md-none">
-              Employer?
+                Employer?
                 <NavLink
                   to="/register-emp"
                   className="text-decoration-none  ms-2  text-success fw-bold"
@@ -121,7 +221,6 @@ const ProtoRegisterSeek = () => {
                   Sign Up As Employer
                 </NavLink>
               </p>
-              
             </div>
           </div>
         </div>

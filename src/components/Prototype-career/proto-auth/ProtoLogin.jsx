@@ -1,10 +1,56 @@
 import React, { useEffect, useState } from "react";
 import "../ProtoStyles/Proto-Auth/Auth-Login.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 const ProtoLogin = () => {
+  let navigate = useNavigate();
 
+  let [email, setEmail] = useState("");
+  let [password, setPassword] = useState("");
 
-  
+  let [emailErro, setEmailErro] = useState(false);
+  let [passwordErro, setPasswordErro] = useState(false);
+
+  let formSubmitHandler = async () => {
+    await fetch(`http://localhost:5000/users?email=${email}`, {
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.length === 0) {
+          console.log("No Email Exisit . . . ");
+          setEmailErro(true);
+          setTimeout(() => {
+            setEmailErro(false);
+          }, 1000);
+       } else {
+          console.log(data);
+          console.log("password", typeof password);
+          let oldPassword = data[0].password;
+          console.log("oldPassword", typeof oldPassword);
+          if (oldPassword === password) {
+            navigate("/", { replace: true });
+          } else {
+            setPasswordErro(true);
+            setTimeout(() => {
+              setPasswordErro(false);
+            }, 1000);
+        }
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+  function inputChangeHandler(event) {
+    if (event.id === "email") {
+      setEmail(event.value);
+    } else if (event.id === "password") {
+      setPassword(event.value);
+    }
+  }
   useEffect(() => {
     document.title = "Login";
   }, []);
@@ -22,25 +68,43 @@ const ProtoLogin = () => {
               <form
                 onSubmit={(event) => {
                   event.preventDefault();
+                  formSubmitHandler();
                 }}
               >
                 <div className="mb-3">
                   <input
+                    required
                     type="email"
                     className="form-control ps-4 py-2 rounded-5"
                     id="email"
-                    placeholder="Email"
+                    value={email}
+                    onChange={(event) => inputChangeHandler(event.target)}
+                    placeholder="Work Email"
                     aria-describedby="emailHelp"
                   />
+                  {emailErro && (
+                    <p className="text-danger ms-4" id="emailerrorId">
+                      Email Not correct
+                    </p>
+                  )}
                 </div>
                 <div className="mb-3">
                   <input
+                    required
                     type="password"
+                    value={password}
+                    onChange={(event) => inputChangeHandler(event.target)}
                     className="form-control ps-4 py-2 rounded-5 "
                     placeholder="Password"
                     id="password"
                   />
+                  {passwordErro && (
+                    <p className="text-danger ms-4" id="passwordErro">
+                      Password Not Correct
+                    </p>
+                  )}
                 </div>
+
                 <div className="mb-3 form-check">
                   <p className="text-success">Forgot Password?</p>
                 </div>
